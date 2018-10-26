@@ -1,0 +1,2 @@
+# CRON TABLE
+0 0 * * * root /usr/local/bin/geoip_database.sh

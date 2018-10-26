@@ -12,6 +12,9 @@ FROM webdevops/php-nginx:alpine-php7
 LABEL maintainer="hgati <cobays@gmail.com>"
 ARG PHALCON_VERSION=3.4.1
 
+# copy configuration files
+COPY files /
+
 # v8js files
 COPY --from=v8build /tmp/libv8.tar.gz /tmp/libv8.tar.gz
 
