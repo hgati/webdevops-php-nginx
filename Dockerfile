@@ -21,6 +21,9 @@ COPY --from=v8build /tmp/libv8.tar.gz /tmp/libv8.tar.gz
 RUN cd /tmp \
 	# nginx 3rd party modules
 	&& apk-install nginx-mod-http-echo nginx-mod-http-geoip nginx-mod-http-lua \
+	# GeoIP 데이터베이스 다운로드
+	&& chmod -R 755 /usr/local/bin \
+	&& geoip_database.sh \
 	#&& apk --no-cache add --virtual .build-deps alpine-sdk php7-dev \
 	&& apk add -u --no-cache --virtual .build-deps $PHPIZE_DEPS zlib-dev g++ make php7-dev re2c \
 	# v8js extension

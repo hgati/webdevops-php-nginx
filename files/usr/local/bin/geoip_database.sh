@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-[ -d /usr/share/GeoIP ] && mkdir /usr/share/GeoIP
-cd /usr/share/GeoIP
-
-wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz -O GeoIP.dat.gz
-gzip -df GeoIP.dat.gz
-
-wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz -O GeoLiteCity.dat.gz
-gzip -df GeoLiteCity.dat.gz
+mkdir -p /usr/share/GeoIP
+wget -q --show-progress -P /usr/share/GeoIP/ http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
+gunzip -f /usr/share/GeoIP/GeoIP.dat.gz
+wget -q --show-progress -P /usr/share/GeoIP/ http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
+gunzip -f /usr/share/GeoIP/GeoLiteCity.dat.gz
