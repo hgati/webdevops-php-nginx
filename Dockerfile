@@ -45,6 +45,8 @@ RUN cd /tmp \
 	&& pecl uninstall redis \
 	&& yes "yes" | pecl install redis \
 	&& echo "extension=redis.so" > /etc/php7/conf.d/20_redis.ini \
+	# 동적모듈추가가능하게 (webdevops가 nginx.conf 상단부분에 대한 수정지원이 불가하여 편법으로 해결함)
+    && sed -i '1 i\include modules.conf;' /opt/docker/etc/nginx/nginx.conf \
 	# clean
 	&& chmod -R 755 /usr/lib/php7/modules \
 	&& rm -rf /tmp/* \
