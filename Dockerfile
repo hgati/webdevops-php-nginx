@@ -21,6 +21,7 @@ COPY --from=v8build /tmp/libv8.tar.gz /tmp/libv8.tar.gz
 RUN cd /tmp \
 	# nginx 3rd party modules
 	&& apk-install nginx-mod-http-echo nginx-mod-http-geoip nginx-mod-http-lua \
+	&& sed -i '1 i\load_module "modules/ndk_http_module.so";' /etc/nginx/modules/http_lua.conf \
 	# GeoIP 데이터베이스 다운로드
 	&& chmod -R 755 /usr/local/bin \
 	&& geoip_database.sh \
